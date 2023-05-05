@@ -1,3 +1,5 @@
+import React from "react";
+import { Link as RouteLink } from "react-router-dom";
 import {
   Box,
   Flex,
@@ -8,196 +10,84 @@ import {
   Collapse,
   Icon,
   Link,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
+  useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
   CloseIcon,
+  MoonIcon,
+  SunIcon,
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import Logo from "../../src/Logo.jpg";
-import Login from "../Pages/Login";
-import { Link as RouteLink } from "react-router-dom";
 
-export default function NavBar() {
-  const { isOpen, onToggle } = useDisclosure();
-
-  return (
-    <Box>
-      <Flex
-        bg={useColorModeValue("white", "gray.800")}
-        color={useColorModeValue("gray.600", "white")}
-        minH={"60px"}
-        py={{ base: 2 }}
-        px={{ base: 4 }}
-        borderBottom={1}
-        borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.900")}
-        align={"center"}
-      >
-        <Flex
-          flex={{ base: 1, md: "auto" }}
-          ml={{ base: -2 }}
-          display={{ base: "flex", md: "none" }}
-        >
-          <IconButton
-            onClick={onToggle}
-            icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-            }
-            variant={"ghost"}
-            aria-label={"Toggle Navigation"}
-          />
-        </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
-          >
-            <img src={Logo} alt="logo" width="140px" height="50px" />
-          </Text>
-
-          <Flex display={{ base: "none", md: "flex" }} ml={10}>
-            <DesktopNav />
-          </Flex>
-        </Flex>
-
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#"}
-          >
-            Login
-          </Button>
-
-          <Button
-            as={"a"}
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"green"}
-            bg={"white"}
-            border="1px"
-            borderColor="green.200"
-            href={"#"}
-            _hover={{
-              bg: "blue.300",
-            }}
-          >
-            Register
-          </Button>
-        </Stack>
-      </Flex>
-
-      <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
-      </Collapse>
-    </Box>
-  );
-}
+const NAV_ITEMS = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Use Cases",
+    href: "/useCase",
+  },
+  {
+    label: "Product",
+    href: "/product",
+  },
+  {
+    label: "Company",
+    href: "/company",
+  },
+  {
+    label: "Support",
+    href: "/support",
+  },
+  {
+    label: "Login",
+    href: "/login",
+  },
+  {
+    label: "Register",
+    href: "/register",
+  },
+];
 
 const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
+  const { isOpen, onClose } = useDisclosure();
 
   return (
     <Stack direction={"row"} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger>
-              <Link
-                p={2}
-                href={navItem.href ?? "#"}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
-              </Link>
-            </PopoverTrigger>
-
-            {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={"xl"}
-                bg={popoverContentBgColor}
-                p={4}
-                rounded={"xl"}
-                minW={"sm"}
-              >
-                <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
-                </Stack>
-              </PopoverContent>
-            )}
-          </Popover>
+          <Link
+            as={RouteLink}
+            to={navItem.href}
+            p={2}
+            fontSize={"md"}
+            fontWeight={500}
+            color={linkColor}
+            _hover={{
+              textDecoration: "none",
+              color: linkHoverColor,
+            }}
+          >
+            {navItem.label}
+          </Link>
         </Box>
       ))}
     </Stack>
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }) => {
-  return (
-    <Link
-      href={href}
-      role={"group"}
-      display={"block"}
-      p={2}
-      rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
-    >
-      <Stack direction={"row"} align={"center"}>
-        <Box>
-          <Text
-            transition={"all .3s ease"}
-            _groupHover={{ color: "pink.400" }}
-            fontWeight={500}
-          >
-            {label}
-          </Text>
-          <Text fontSize={"sm"}>{subLabel}</Text>
-        </Box>
-        <Flex
-          transition={"all .3s ease"}
-          transform={"translateX(-10px)"}
-          opacity={0}
-          _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
-          justify={"flex-end"}
-          align={"center"}
-          flex={1}
-        >
-          <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
-        </Flex>
-      </Stack>
-    </Link>
-  );
-};
-
 const MobileNav = () => {
+  const { isOpen, onToggle } = useDisclosure();
+
   return (
     <Stack
       bg={useColorModeValue("white", "gray.800")}
@@ -254,7 +144,12 @@ const MobileNavItem = ({ label, children, href }) => {
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <Link
+                key={child.label}
+                py={2}
+                href={child.href}
+                onClick={onToggle}
+              >
                 {child.label}
               </Link>
             ))}
@@ -264,19 +159,46 @@ const MobileNavItem = ({ label, children, href }) => {
   );
 };
 
-const NAV_ITEMS = [
-  {
-    label: "Use Cases",
-  },
-  {
-    label: "Product",
-  },
-  {
-    label: "Company",
-    href: "#",
-  },
-  {
-    label: "Support",
-    href: "#",
-  },
-];
+const Navbar = () => {
+  const { toggleColorMode } = useColorMode();
+  const SwitchIcon = useColorModeValue(MoonIcon, SunIcon);
+  const bg = useColorModeValue("white", "gray.800");
+  const mobileNav = useColorModeValue("gray.200", "gray.700");
+  const { isOpen, onToggle } = useDisclosure();
+
+  return (
+    <Box bg={bg} px={4}>
+      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        <IconButton
+          size={"md"}
+          icon={<HamburgerIcon />}
+          aria-label={"Open Menu"}
+          display={{ md: "none" }}
+          onClick={onToggle}
+          variant={"ghost"}
+        />
+        <Link as={RouteLink} to={"/"}>
+          <img src={Logo} alt="Logo" style={{ height: "40px" }} />
+        </Link>
+        <Box display={{ base: "none", md: "flex" }} alignItems={"center"}>
+          <DesktopNav />
+        </Box>
+        <Flex alignItems={"center"}>
+          <IconButton
+            size={"md"}
+            icon={<SwitchIcon />}
+            aria-label={"Toggle Color Mode"}
+            variant={"ghost"}
+            onClick={toggleColorMode}
+          />
+        </Flex>
+      </Flex>
+
+      <Collapse in={isOpen} animateOpacity>
+        <MobileNav />
+      </Collapse>
+    </Box>
+  );
+};
+
+export default Navbar;
