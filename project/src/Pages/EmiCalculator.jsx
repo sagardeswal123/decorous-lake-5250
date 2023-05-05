@@ -1,6 +1,7 @@
 import { Box, Slider } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { ChakraSlider } from "../Components/slider"
+import { Link, Navigate } from 'react-router-dom'
 const EmiCalculator = () => {
   const [loanAmount, setLoanAmount] = useState(5000)
   const [loanTenure, setLoanTenure] = useState(0.25)
@@ -51,6 +52,10 @@ const EmiCalculator = () => {
             <Box>{emi * +loanTenure * 12}</Box>
             <Box>Total Interest</Box>
             <Box>{(emi * +loanTenure * 12) - loanAmount}</Box>
+            <Link to="/loanApplicationPage">
+            <button >Apply loan</button>
+            </Link>
+        
           </Box>
         </Box>
       </Box>
