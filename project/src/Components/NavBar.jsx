@@ -75,7 +75,6 @@ export default function NavBar() {
           direction={"row"}
           spacing={6}
         >
-        
           <Button
             as={"a"}
             fontSize={"sm"}
@@ -85,7 +84,7 @@ export default function NavBar() {
           >
             Login
           </Button>
-         
+
           <Button
             as={"a"}
             display={{ base: "none", md: "inline-flex" }}
