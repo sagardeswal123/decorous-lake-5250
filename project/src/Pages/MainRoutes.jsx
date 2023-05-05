@@ -1,19 +1,18 @@
 import React from "react";
-import { Routes, Route, Switch } from "react-router-dom";
-import HomePage from "./HomePage";
-import Login from "./Login";
-import Register from "./Register";
-
-const MainRoutes = () => {
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-      </Routes>
-    </div>
-  );
+import { Routes, Route } from "react-router-dom";
+import  HomePage  from "./HomePage";
+import Login from './Login';
+import Register from './Register';
+import EmiCalculator from "./EmiCalculator"
+export const MainRoutes = () => {
+  return <div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="login" element={<Login />} />
+      <Route path="login" element={<Register />} />
+      <Route path="/emiCalculator" element={<EmiCalculator />} />
+    </Routes>
+  </div>;
 };
 
 export default MainRoutes;
