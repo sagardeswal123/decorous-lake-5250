@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./HomePage.module.css";
-import { Button,Box,Stack } from "@chakra-ui/react";
+import { Button, Box, Stack } from "@chakra-ui/react";
 import UserIconList from "../Components/UserIconList";
 
 const users = [
@@ -59,31 +59,20 @@ const HomePage = () => {
           Get Started
         </Button>
       </div>
-      <Box
-      width="30%"
-      height="120px"
-      border="2px solid green"
-      margin= "5%"
-      display="flex"
-      >
-      <Stack 
-      border={"2px solid red"}
-      width={250}
-      height={120}
-      >
-      <h1>300K+<span>   Reviews</span></h1>
-      <h3>No matter how your customer want pay, we can help you</h3>
-      </Stack>
-      <Stack
-      border={"2px solid red"}
-      width={250}
-      height={120}
-      >
-      <UserIconList users={users}/>
-      <h2>Users</h2>
-      </Stack>
+      <Box width="30%" height="120px" margin="5%" display="flex">
+        <Stack width={250} height={120}>
+          <h1 style={{ color: "#2596be", fontWeight: "bold" }}>
+            300K+<span style={{ color: "#EC407A" }}> Reviews</span>
+          </h1>
+          <h3>No matter how your customer want pay, we can help you</h3>
+        </Stack>
+        <Stack width={250} height={120}>
+          <UserIconList users={users} />
+          <h2>Users</h2>
+          <h3>No matter how your customer want pay, we can help you</h3>
+        </Stack>
       </Box>
-      
+
       {/* {remainingCount > 0 && (
         <div style={{ marginTop: "-20px", textAlign: "center"}}>
           +{remainingCount} more users
