@@ -26,7 +26,7 @@ const UserIconList = ({ users }) => {
             src={user.icon}
             size="sm"
             borderRadius="50%"
-            mt="45rem"
+            mt="49rem"
           />
           {index === 4 && users.length > 5 && (
             <Box
@@ -45,7 +45,7 @@ const UserIconList = ({ users }) => {
               textAlign="center"
               pt={2}
               zIndex="10"
-              mt="22.4rem"
+              mt="24.4rem"
             >
               +{users.length - 5}
             </Box>

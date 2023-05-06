@@ -1,7 +1,30 @@
 import React from "react";
 import styles from "./HomePage.module.css";
-import { Button, Box, Stack } from "@chakra-ui/react";
+import { Button, Box, Stack, Image } from "@chakra-ui/react";
 import UserIconList from "../Components/UserIconList";
+import google from "../assets/google.png";
+import walmart from "../assets/walmart_pngwing.png";
+import paypal from "../assets/paypal_pngwing.png";
+import microsoft from "../assets/microsoft.png";
+
+const iconList = [
+  {
+    name: "google",
+    icon: google,
+  },
+  {
+    name: "walmart",
+    icon: walmart,
+  },
+  {
+    name: "paypal",
+    icon: paypal,
+  },
+  {
+    name: "microsoft",
+    icon: microsoft,
+  },
+];
 
 const users = [
   {
@@ -55,29 +78,43 @@ const HomePage = () => {
           borderRadius="50px"
           color="black"
           mt={8}
+          mr={"90%"}
         >
           Get Started
         </Button>
       </div>
-      <Box width="30%" height="120px" margin="5%" display="flex">
-        <Stack width={250} height={120}>
-          <h1 style={{ color: "#2596be", fontWeight: "bold" }}>
-            300K+<span style={{ color: "#EC407A" }}> Reviews</span>
-          </h1>
-          <h3>No matter how your customer want pay, we can help you</h3>
-        </Stack>
-        <Stack width={250} height={120}>
-          <UserIconList users={users} />
-          <h2>Users</h2>
-          <h3>No matter how your customer want pay, we can help you</h3>
-        </Stack>
-      </Box>
+      <Box display="flex" justifyContent="space-between" mr={"5%"}>
+        <Box width="30%" height="120px" margin="5%" display="flex">
+          <Stack width={250} height={120}>
+            <h1 style={{ color: "#2596be", fontWeight: "bold" }}>
+              300K+<span style={{ color: "#EC407A" }}> Reviews</span>
+            </h1>
+            <h3>No matter how your customer want pay, we can help you</h3>
+          </Stack>
+          <Stack width={250} height={120}>
+            <UserIconList users={users} />
+            <h2>Users</h2>
+            <h3>No matter how your customer want pay, we can help you</h3>
+          </Stack>
+        </Box>
 
-      {/* {remainingCount > 0 && (
+        {/* {remainingCount > 0 && (
         <div style={{ marginTop: "-20px", textAlign: "center"}}>
           +{remainingCount} more users
         </div>
       )} */}
+        <Box display="flex" gap="5%" width={"50%"} alignItems={"center"}>
+          {iconList.map((e) => (
+            <Image
+              src={e.icon}
+              alt={e.name}
+              boxSize="200px"
+              width={"170px"}
+              height="50px"
+            />
+          ))}
+        </Box>
+      </Box>
     </div>
   );
 };
