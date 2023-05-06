@@ -1,8 +1,42 @@
 import React from "react";
 import styles from "./HomePage.module.css";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Button,Box,Stack } from "@chakra-ui/react";
+import UserIconList from "../Components/UserIconList";
+
+const users = [
+  {
+    name: "Alice",
+    icon: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Android_O_Preview_Logo.png",
+  },
+  {
+    name: "Bob",
+    icon: "https://png.pngtree.com/png-clipart/20190516/original/pngtree-instagram-png-image_3562023.jpg",
+  },
+  {
+    name: "Charlie",
+    icon: "https://png.pngtree.com/png-clipart/20201208/original/pngtree-red-and-black-logo-png-image_5517319.jpg",
+  },
+  {
+    name: "Charlie",
+    icon: "https://png.pngtree.com/png-clipart/20210328/original/pngtree-black-and-red-rooster-logo-png-image_6160371.jpg",
+  },
+  {
+    name: "Charlie",
+    icon: "https://png.pngtree.com/png-clipart/20190515/original/pngtree-polygonal-rooster-logo-design-png-image_3632486.jpg",
+  },
+  {
+    name: "Charlie",
+    icon: "https://png.pngtree.com/png-clipart/20210328/original/pngtree-black-and-red-rooster-logo-png-image_6160371.jpg",
+  },
+  {
+    name: "Charlie",
+    icon: "https://png.pngtree.com/png-clipart/20190515/original/pngtree-polygonal-rooster-logo-design-png-image_3632486.jpg",
+  },
+];
 
 const HomePage = () => {
+  // const MAX_USERS = 5;
+  // const remainingCount = users.length - MAX_USERS;
   return (
     <div>
       <div style={{ width: "65%", height: "500px", margin: "5%" }}>
@@ -25,6 +59,36 @@ const HomePage = () => {
           Get Started
         </Button>
       </div>
+      <Box
+      width="30%"
+      height="120px"
+      border="2px solid green"
+      margin= "5%"
+      display="flex"
+      >
+      <Stack 
+      border={"2px solid red"}
+      width={250}
+      height={120}
+      >
+      <h1>300K+<span>   Reviews</span></h1>
+      <h3>No matter how your customer want pay, we can help you</h3>
+      </Stack>
+      <Stack
+      border={"2px solid red"}
+      width={250}
+      height={120}
+      >
+      <UserIconList users={users}/>
+      <h2>Users</h2>
+      </Stack>
+      </Box>
+      
+      {/* {remainingCount > 0 && (
+        <div style={{ marginTop: "-20px", textAlign: "center"}}>
+          +{remainingCount} more users
+        </div>
+      )} */}
     </div>
   );
 };
