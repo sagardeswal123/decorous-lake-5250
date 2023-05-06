@@ -30,16 +30,16 @@ const NAV_ITEMS = [
     href: "/",
   },
   {
-    label: "Use Cases",
-    href: "/useCase",
+    label: "EMI Calculator",
+    href: "/emiCalculator",
   },
   {
     label: "Product",
     href: "/product",
   },
   {
-    label: "Company",
-    href: "/company",
+    label: "Apply for Loan",
+    href: "/loanApplicationPage",
   },
   {
     label: "Support",

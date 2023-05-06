@@ -1,6 +1,5 @@
 import { FormControl, FormLabel, Input, Button, Box } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import Navbar from '../Components/NavBar'
 
 const LoanApplicationPage = () => {
     const [aadhar, setAadhar] = useState(null);
@@ -16,7 +15,6 @@ const LoanApplicationPage = () => {
     }
     return (
         <Box >
-            <Navbar />
             <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
                 <Box width={"40%"} padding={5}>
                     <Box fontSize={"30px"}>Personal Details</Box>
