@@ -7,9 +7,10 @@ const UserIconList = ({ users }) => {
     <Flex
       direction="row"
       position="absolute"
-      left="25%"
-      top="20px"
+      left="21.6%"
+      top="-33px"
       spacing="10px"
+      marginBottom="40px"
     >
       {users.slice(0, 5).map((user, index) => (
         <Box
