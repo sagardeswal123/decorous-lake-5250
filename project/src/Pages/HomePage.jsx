@@ -14,19 +14,17 @@ const HomePage = () => {
           business. Open an account in under 3 minutes.
         </h3>
         <Button
-        size="md"
-        height="48px"
-        width="200px"
-        backgroundColor="#51defc"
-        borderRadius="50px"
-        color="black"
-        mt={8}
-      >
-        Get Started
-      </Button>
+          size="md"
+          height="48px"
+          width="200px"
+          backgroundColor="#51defc"
+          borderRadius="50px"
+          color="black"
+          mt={8}
+        >
+          Get Started
+        </Button>
       </div>
-
-      
     </div>
   );
 };
