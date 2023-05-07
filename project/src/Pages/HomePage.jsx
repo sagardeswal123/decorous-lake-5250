@@ -102,7 +102,7 @@ const HomePage = () => {
             <box>
               <UserIconList users={users} />
             </box>
-            <h2 style={{marginLeft:"40%"}}>Users</h2>
+            <h2 style={{ marginLeft: "40%" }}>Users</h2>
             <h3>No matter how your customer want pay, we can help you</h3>
           </Stack>
         </Box>
