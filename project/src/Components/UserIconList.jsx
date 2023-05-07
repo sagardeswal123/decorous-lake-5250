@@ -1,15 +1,16 @@
 import React from "react";
-import { Flex, Box, Avatar } from "@chakra-ui/react";
+import { Flex, Box, Avatar, useBreakpointValue } from "@chakra-ui/react";
 
 const UserIconList = ({ users }) => {
-  //console.log(users);
+  const display = useBreakpointValue({ base: "none", sm: "none", md: "none",xl:"block" });
+
   return (
-    <Box ml={"28px"}>
+    <Box display={display}>
       <Flex
         direction="row"
         position="absolute"
-        left="24%"
-        top="-33px"
+        left={{ base: "-160px", sm: "250px", md: "350px", lg: "30%", xl: "", "2xl": "22%" }}
+        top={{ base: "-475px", sm: "-490", md: "-420", lg: "-8%", xl: "-2%", "2xl": "-3%" }}
         spacing="10px"
         marginBottom="40px"
       >
@@ -18,21 +19,20 @@ const UserIconList = ({ users }) => {
             key={index}
             position="relative"
             zIndex={index + 2}
-            // top={`${index * 1}px`} // adjust the pixel value to control the spacing and overlapping
             ml={-5}
-            mt="60%"
+            mt={{ base: "", lg: "60%" }}
           >
             <Avatar
               name={user.name}
               src={user.icon}
-              size="sm"
+              size={{ base: "xs", sm: "xs", xl: "sm", lg: "sm" }}
               borderRadius="50%"
-              mt="49rem"
+              mt={"53rem"}
             />
             {index === 4 && users.length > 5 && (
               <Box
                 position="absolute"
-                left="50%"
+                left="80%"
                 top="50%"
                 transform="translate(-50%, -50%)"
                 bg="#4a7e97"
@@ -46,7 +46,7 @@ const UserIconList = ({ users }) => {
                 textAlign="center"
                 pt={2}
                 zIndex="10"
-                mt="24.4rem"
+                mt={{ base: "", lg: "26.5rem" }}
               >
                 +{users.length - 5}
               </Box>
