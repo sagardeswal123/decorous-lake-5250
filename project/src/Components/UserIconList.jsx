@@ -4,10 +4,13 @@ import { Flex, Box, Avatar } from "@chakra-ui/react";
 const UserIconList = ({ users }) => {
   //console.log(users);
   return (
+    <Box 
+    ml={"28px"}
+    >
     <Flex
       direction="row"
       position="absolute"
-      left="21.6%"
+      left="24%"
       top="-33px"
       spacing="10px"
       marginBottom="40px"
@@ -17,7 +20,7 @@ const UserIconList = ({ users }) => {
           key={index}
           position="relative"
           zIndex={index + 2}
-          top={`${index * 1}px`} // adjust the pixel value to control the spacing and overlapping
+          // top={`${index * 1}px`} // adjust the pixel value to control the spacing and overlapping
           ml={-5}
           mt="60%"
         >
@@ -53,6 +56,7 @@ const UserIconList = ({ users }) => {
         </Box>
       ))}
     </Flex>
+    </Box>
   );
 };
 

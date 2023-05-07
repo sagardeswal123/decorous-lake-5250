@@ -84,7 +84,14 @@ const HomePage = () => {
         </Button>
       </div>
       <Box display="flex" justifyContent="space-between" mr={"5%"}>
-        <Box width="30%" height="120px" margin="5%" display="flex">
+        <Box
+          width="35%"
+          height="120px"
+          margin="5%"
+          display="flex"
+          gap="5%"
+          textAlign={"left"}
+        >
           <Stack width={250} height={120}>
             <h1 style={{ color: "#2596be", fontWeight: "bold" }}>
               300K+<span style={{ color: "#EC407A" }}> Reviews</span>
@@ -92,8 +99,10 @@ const HomePage = () => {
             <h3>No matter how your customer want pay, we can help you</h3>
           </Stack>
           <Stack width={250} height={120}>
-            <UserIconList users={users} />
-            <h2>Users</h2>
+            <box>
+              <UserIconList users={users} />
+            </box>
+            <h2 style={{marginLeft:"40%"}}>Users</h2>
             <h3>No matter how your customer want pay, we can help you</h3>
           </Stack>
         </Box>
