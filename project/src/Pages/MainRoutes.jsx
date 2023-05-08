@@ -5,6 +5,11 @@ import Login from './Login';
 import Register from './Register';
 import EmiCalculator from "./EmiCalculator"
 import { LoanApplicationPage } from "./loanApplicationPage";
+import ProductPage from "./ProductPage";
+import HouseLoan from "./Loans/HouseLoan";
+import PersonalLoan from "./Loans/PersonalLoan";
+import GoldLoan from "./Loans/GoldLoan";
+import VehicalLoan from "./Loans/VehicalLoan";
 export const MainRoutes = () => {
   return <div>
     <Routes>
@@ -13,6 +18,11 @@ export const MainRoutes = () => {
       <Route path="register" element={<Register />} />
       <Route path="/emiCalculator" element={<EmiCalculator />} />
       <Route path="/loanApplicationPage" element={<LoanApplicationPage />} />
+      <Route path="/product" element={<ProductPage />} />
+      <Route path="/homeloan" element={<HouseLoan/>} />
+      <Route path="/personaloan" element={<PersonalLoan/>} />
+      <Route path="/goldloan" element={<GoldLoan/>} />
+      <Route path="/vehicaloan" element={<VehicalLoan/>}/>
     </Routes>
   </div>;
 };
