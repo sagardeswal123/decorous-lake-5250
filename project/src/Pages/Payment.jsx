@@ -17,7 +17,7 @@ const Payment = () => {
         <Input placeholder='Enter Bank IFSC Code' />
         <Input placeholder='Enter Bank Branch Code' />
     </Box>
-    <Button onClick={handleComplete}>Complete</Button>
+    <Button onClick={handleComplete} marginTop={"50px"}>Complete</Button>
     </Box>
   )
 }

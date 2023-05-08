@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 const ApplyLoan = () => {
     const store=useSelector(store=>store.getData.personalData)
     const dispatch=useDispatch()
-    const [principal,setPrincipal]=useState(0)
+    const [principal,setPrincipal]=useState(20000)
   const [loanAmount, setLoanAmount] = useState(5000)
     const [loanTenure, setLoanTenure] = useState(0.25)
     const [loanRate, setLoanRate] = useState(8.50)
@@ -58,7 +58,7 @@ const ApplyLoan = () => {
         
     
         <Link to="/payment">
-        <Button fontSize={"28px"}>Continue</Button>
+        <Button fontSize={"28px"} marginBottom={"100px"}>Continue</Button>
             </Link>
       
     </div>
