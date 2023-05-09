@@ -17,21 +17,29 @@ import {
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from 'axios';
+import Login from './Login';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
   const obj = {
     email:email,
     password:password,
+    id:Date.now()+Math.random()
   }
 
   const handleClick = (e)=>{
     e.preventDefault();
     axios.post(`https://wandering-newt-hat.cyclic.app/login`,obj).then((res)=>console.log(res.data))
     .catch((err)=>console.log(err));
+  }
+
+  const handleClick2 = ()=>{
+    navigate("/login")
   }
 
 
@@ -101,7 +109,7 @@ export default function Register() {
             </Stack>
             <Stack pt={6}>
               <Text align={'center'}>
-                Already a user? <Link color={'blue.400'}>Login</Link>
+                Already a user? <Link onClick={handleClick2} color={'blue.400'}>Login</Link>
               </Text>
             </Stack>
           </Stack>
