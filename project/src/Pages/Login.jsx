@@ -27,7 +27,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const isAuth = useSelector(store => store.AuthReducer.isAuth);
+  const {isAuth,isError} = useSelector(store => store.AuthReducer);
 
   console.log(isAuth)
 
@@ -41,13 +41,12 @@ const handleBtn=()=>{
   loginData.forEach((el)=>{
    if(el.email===email&&el.password===password){
     dispatch(LoginReducer(1));
-    navigate(location.state);
+    navigate(location.state ? location.state : "/");
     alert("Login successful")
    }
    else if((el.email!==email&&el.password===password) || (el.email===email&&el.password!==password)
    ||(el.email!==email&&el.password!==password)){
     dispatch(LoginReducer(0));
-    alert("Wrong email or password...")
    }
   })
   
