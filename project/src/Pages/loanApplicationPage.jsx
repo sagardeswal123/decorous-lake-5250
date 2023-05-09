@@ -1,6 +1,9 @@
 import { FormControl, FormLabel, Input, Button, Box } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import axios from 'axios';
+import { postData } from '../redux/personalInformationRedux/action';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const initialState = {
     name: "",
@@ -17,6 +20,7 @@ const initialState = {
 };
 
 const LoanApplicationPage = () => {
+    const dispatch=useDispatch()
     const [data, setData] = useState(initialState)
     const [aadhar, setAadhar] = useState("");
     const [pan, setPan] = useState("");
@@ -32,19 +36,7 @@ const LoanApplicationPage = () => {
     };
 
     const handleSubmit = (e) => {
-
-        const formData = new FormData();
-
-        formData.append("aadharImage", aadhar);
-
-
-        formData.append("panImage", pan);
-        console.log(formData.get("aadharImage"));
-        console.log(formData, data)
-
-        axios
-            .post("https://wandering-newt-hat.cyclic.app/data", formData).then((res) => console.log(res))
-
+       dispatch(postData(data))
     };
 
 
@@ -101,8 +93,10 @@ const LoanApplicationPage = () => {
                         </Box>
                     )}
                 </Box>
-
-                <Button onClick={handleSubmit} fontSize={"24px"} margin={"10px 0px 40px 0px"} backgroundColor={"pink.300"} color={"white"} _hover={{ backgroundColor: "pink.200" }} > Check Eligiblity </Button>
+                        <Link to="/ApplyLoan">
+                        <Button onClick={handleSubmit} fontSize={"24px"} margin={"10px 0px 40px 0px"} backgroundColor={"pink.300"} color={"white"} _hover={{ backgroundColor: "pink.200" }} > Check Eligiblity </Button> 
+                        </Link>
+            
 
             </Box>
         </Box>

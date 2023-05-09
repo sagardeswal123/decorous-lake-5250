@@ -11,6 +11,8 @@ import PersonalLoan from "./Loans/PersonalLoan";
 import GoldLoan from "./Loans/GoldLoan";
 import VehicalLoan from "./Loans/VehicalLoan";
 import { PrivateRoute } from "../Components/PrivateRoute";
+import ApplyLoan from "./ApplyLoan";
+import Payment from "./Payment";
 export const MainRoutes = () => {
   return <div>
     <Routes>
@@ -31,6 +33,8 @@ export const MainRoutes = () => {
       <Route path="/personaloan" element={<PersonalLoan/>} />
       <Route path="/goldloan" element={<GoldLoan/>} />
       <Route path="/vehicaloan" element={<VehicalLoan/>}/>
+      <Route path="/applyLoan" element={<ApplyLoan />}/>
+      <Route path="/payment" element={<Payment />}/>
     </Routes>
   </div>;
 };
