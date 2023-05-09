@@ -10,15 +10,23 @@ import HouseLoan from "./Loans/HouseLoan";
 import PersonalLoan from "./Loans/PersonalLoan";
 import GoldLoan from "./Loans/GoldLoan";
 import VehicalLoan from "./Loans/VehicalLoan";
+import { PrivateRoute } from "../Components/PrivateRoute";
 export const MainRoutes = () => {
   return <div>
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="login" element={<Login />} />
-      <Route path="register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/emiCalculator" element={<EmiCalculator />} />
-      <Route path="/loanApplicationPage" element={<LoanApplicationPage />} />
-      <Route path="/product" element={<ProductPage />} />
+      <Route path="/loanApplicationPage" element={
+      <PrivateRoute>
+        <LoanApplicationPage />
+      </PrivateRoute>} />
+      <Route path="/product" element={
+      <PrivateRoute>
+        <ProductPage />
+      </PrivateRoute>
+      } />
       <Route path="/homeloan" element={<HouseLoan/>} />
       <Route path="/personaloan" element={<PersonalLoan/>} />
       <Route path="/goldloan" element={<GoldLoan/>} />

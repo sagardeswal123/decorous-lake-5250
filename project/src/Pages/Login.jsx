@@ -14,19 +14,44 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { LoginReducer } from '../redux/AuthReducer/action';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginData, setLoginData] = useState([]);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const isAuth = useSelector(store => store.AuthReducer.isAuth);
+
+  console.log(isAuth)
 
 
   useEffect(()=>{
     axios.get(`https://wandering-newt-hat.cyclic.app/login`).then((res)=>setLoginData(res.data))
+   
   },[]);
 
-
+const handleBtn=()=>{
+  loginData.forEach((el)=>{
+   if(el.email===email&&el.password===password){
+    dispatch(LoginReducer(1));
+    navigate(location.state);
+    alert("Login successful")
+   }
+   else if((el.email!==email&&el.password===password) || (el.email===email&&el.password!==password)
+   ||(el.email!==email&&el.password!==password)){
+    dispatch(LoginReducer(0));
+    alert("Wrong email or password...")
+   }
+  })
+  
+}
   return (
     <Flex
       minH={'100vh'}
@@ -60,6 +85,7 @@ export default function Login() {
                 <Link color={'blue.400'}>Forgot password?</Link>
               </Stack>
               <Button
+                onClick={handleBtn}
                 bg={'blue.400'}
                 color={'white'}
                 _hover={{
