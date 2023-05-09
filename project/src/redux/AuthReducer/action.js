@@ -5,6 +5,6 @@ export const LoginReducer =(obj)=>(dispatch)=>{
     if(obj===1){
         dispatch({type:LOGIN_SUCCESS})
     }else if(obj===0){
-        dispatch({type:LOGIN_FAIL})
+        dispatch({type:LOGIN_FAIL,payload:"Wrong credentials"})
     }
 }
