@@ -13,32 +13,36 @@ import {
   Text,
   useColorModeValue,
   Link,
+  useToast
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import axios from 'axios';
-import Login from './Login';
 import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../redux/AuthReducer/action';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
-
-  const obj = {
-    email:email,
-    password:password,
-    id:Date.now()+Math.random()
-  }
-
-  const handleClick = (e)=>{
+  const dispatch = useDispatch()
+const AuthReducer=useSelector(store=>store.AuthReducer)
+const toast = useToast()
+  const handleClick = (e) => {
     e.preventDefault();
-    axios.post(`https://wandering-newt-hat.cyclic.app/login`,obj).then((res)=>console.log(res.data))
-    .catch((err)=>console.log(err));
+    const params = { firstName, lastName, email, password }
+    dispatch(registerUser(params)).then(() =>
+    toast({
+      title: 'register successfull',
+      status: 'success',
+      duration: 1000,
+      isClosable: true,
+    }))
   }
-
-  const handleClick2 = ()=>{
+  const handleClick2 = () => {
     navigate("/login")
   }
 
@@ -65,24 +69,24 @@ export default function Register() {
               <Box>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
+                  <Input type="text" onChange={(e) => setFirstName(e.target.value)} />
                 </FormControl>
               </Box>
               <Box>
                 <FormControl id="lastName">
                   <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
+                  <Input type="text" onChange={(e) => setLastName(e.target.value)} />
                 </FormControl>
               </Box>
             </HStack>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" />
+              <Input value={email} onChange={(e) => setEmail(e.target.value)} type="email" />
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input value={password} onChange={(e)=>setPassword(e.target.value)} type={showPassword ? 'text' : 'password'} />
+                <Input value={password} onChange={(e) => setPassword(e.target.value)} type={showPassword ? 'text' : 'password'} />
                 <InputRightElement h={'full'}>
                   <Button
                     variant={'ghost'}
@@ -97,6 +101,7 @@ export default function Register() {
             <Stack spacing={10} pt={2}>
               <Button
                 onClick={handleClick}
+                isLoading={AuthReducer.isLoading}
                 loadingText="Submitting"
                 size="lg"
                 bg={'blue.400'}
