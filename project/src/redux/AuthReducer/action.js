@@ -1,10 +1,22 @@
-import { LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS } from "./actionType"
-
-export const LoginReducer =(obj)=>(dispatch)=>{
+import axios from "axios";
+import { LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS,REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS, } from "./actionType"
+const url="https://server-cepv.onrender.com/SignUpData"
+export const loginUser =(params)=>(dispatch)=>{
     dispatch({type:LOGIN_REQUEST});
-    if(obj===1){
-        dispatch({type:LOGIN_SUCCESS})
-    }else if(obj===0){
-        dispatch({type:LOGIN_FAIL,payload:"Wrong credentials"})
-    }
+   return axios.get(url,{params:params})
+   .then((res)=>dispatch({type:LOGIN_SUCCESS,payload:res.data}))
+   .catch(err=>dispatch({type:LOGIN_FAIL}))
+   
+}
+
+export const registerUser =(params)=>(dispatch)=>{
+    dispatch({type:REGISTER_REQUEST});
+   return axios.post(url, {params:params})
+      .then(function (res) {
+        dispatch({type:REGISTER_SUCCESS});
+      })
+      .catch(function (err) {
+        dispatch({type:REGISTER_FAIL});
+      });
+   
 }
