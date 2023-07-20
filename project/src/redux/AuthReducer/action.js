@@ -11,7 +11,7 @@ export const loginUser =(params)=>(dispatch)=>{
 
 export const registerUser =(params)=>(dispatch)=>{
     dispatch({type:REGISTER_REQUEST});
-   return axios.post(url, {params:params})
+   return axios.post(url, params)
       .then(function (res) {
         dispatch({type:REGISTER_SUCCESS});
       })
