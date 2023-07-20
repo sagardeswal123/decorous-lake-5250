@@ -102,7 +102,7 @@ const toast = useToast()
               <Button
                 onClick={handleClick}
                 isLoading={AuthReducer.isLoading}
-                loadingText="Submitting"
+                loadingText="Please wait"
                 size="lg"
                 bg={'blue.400'}
                 color={'white'}

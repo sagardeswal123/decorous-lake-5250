@@ -22,7 +22,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import Logo from "../../src/Logo.jpg";
+import Logo from "../../src/assets/QuickLoanLogo.png"
 
 const NAV_ITEMS = [
   {
