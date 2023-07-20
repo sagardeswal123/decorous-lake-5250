@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { LoginReducer } from '../redux/AuthReducer/action';
+import { LoginReducer, loginUser } from '../redux/AuthReducer/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -25,30 +25,13 @@ export default function Login() {
   const [loginData, setLoginData] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
-  const {isAuth,isError} = useSelector(store => store.AuthReducer);
-
-  console.log(isAuth)
-
-
-  useEffect(()=>{
-    axios.get(`https://wandering-newt-hat.cyclic.app/login`).then((res)=>setLoginData(res.data))
-   
-  },[]);
+  const {isAuth,name} = useSelector(store => store.AuthReducer);
+  console.log(name,isAuth)
 
 const handleBtn=()=>{
-  loginData.forEach((el)=>{
-   if(el.email===email&&el.password===password){
-    dispatch(LoginReducer(1));
-    navigate(location.state ? location.state : "/");
-    alert("Login successful")
-   }
-   else if((el.email!==email&&el.password===password) || (el.email===email&&el.password!==password)
-   ||(el.email!==email&&el.password!==password)){
-    dispatch(LoginReducer(0));
-   }
-  })
+  const params={email,password}
+  dispatch(loginUser(params)).then(()=> navigate(location.state))
   
 }
   return (
