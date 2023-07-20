@@ -26,12 +26,11 @@ export default function Login() {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {isAuth,name} = useSelector(store => store.AuthReducer);
-  console.log(name,isAuth)
-
+  const AuthReducer = useSelector(store => store.AuthReducer);
+  console.log(AuthReducer)
 const handleBtn=()=>{
   const params={email,password}
-  dispatch(loginUser(params)).then(()=> navigate(location.state))
+  dispatch(loginUser(params)).then(()=> navigate(location.state||"/"))
   
 }
   return (
