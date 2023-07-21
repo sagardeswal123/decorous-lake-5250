@@ -23,6 +23,8 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import Logo from "../../src/assets/QuickLoanLogo.png"
+import { useDispatch, useSelector } from "react-redux";
+import { Logout } from "../redux/AuthReducer/action";
 
 const NAV_ITEMS = [
   {
@@ -53,6 +55,11 @@ const NAV_ITEMS = [
     label: "Register",
     href: "/register",
   },
+  {
+    label: "Logout",
+    href: "/login",
+  },
+
 ];
 
 const DesktopNav = () => {
@@ -60,26 +67,48 @@ const DesktopNav = () => {
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
   const { isOpen, onClose } = useDisclosure();
-
+  const dispatch=useDispatch()
+  const isAuth = useSelector(store => store.AuthReducer.isAuth);
   return (
     <Stack direction={"row"} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label}>
-          <Link
-            as={RouteLink}
-            to={navItem.href}
-            p={2}
-            fontSize={"md"}
-            fontWeight={500}
-            color={linkColor}
-            _hover={{
-              textDecoration: "none",
-              color: linkHoverColor,
-            }}
-          >
-            {navItem.label}
-          </Link>
-        </Box>
+         [isAuth && (navItem.label !== "Login" && navItem.label !== "Register")?
+             <Box key={navItem.label}>
+         <Link
+           as={RouteLink}
+           to={navItem.href}
+           p={2}
+           fontSize={"md"}
+           fontWeight={500}
+           color={linkColor}
+           onClick={()=>[navItem.label=="Logout"?dispatch(Logout):""]}
+           _hover={{
+             textDecoration: "none",
+             color: linkHoverColor,
+           }}
+         >
+           {navItem.label}
+         </Link>
+       </Box>
+         :  [!isAuth && navItem.label !== "Logout"? 
+         <Box key={navItem.label}>
+         <Link
+           as={RouteLink}
+           to={navItem.href}
+           p={2}
+           fontSize={"md"}
+           fontWeight={500}
+           color={linkColor}
+           onClick={()=>console.log("logout")}
+           _hover={{
+             textDecoration: "none",
+             color: linkHoverColor,
+           }}
+         >
+           {navItem.label}
+         </Link>
+       </Box>:""]]
+   
       ))}
     </Stack>
   );
