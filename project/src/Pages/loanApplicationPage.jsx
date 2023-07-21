@@ -1,9 +1,9 @@
-import { FormControl, FormLabel, Input, Button, Box } from '@chakra-ui/react'
+import { FormControl, FormLabel, Input, Button, Box, Text,useColorModeValue } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import axios from 'axios';
 import { postData } from '../redux/personalInformationRedux/action';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const initialState = {
     name: "",
@@ -20,7 +20,7 @@ const initialState = {
 };
 
 const LoanApplicationPage = () => {
-    const dispatch=useDispatch()
+    const dispatch = useDispatch()
     const [data, setData] = useState(initialState)
     const [aadhar, setAadhar] = useState("");
     const [pan, setPan] = useState("");
@@ -36,67 +36,110 @@ const LoanApplicationPage = () => {
     };
 
     const handleSubmit = (e) => {
-       dispatch(postData(data))
+        dispatch(postData(data))
     };
 
 
 
 
     return (
-        <Box >
-            <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
-                <Box width={"40%"} padding={5}>
-                    <Box fontSize={"30px"}>Personal Details</Box>
-                    <Input type="text" placeholder='Enter your name' name="name" value={data.name} onChange={(e) => handleChange(e)} />
-                    <Input type="text" placeholder='Enter your address' name="address" value={data.address} onChange={(e) => handleChange(e)} />
-                    <Input type="number" placeholder='Enter your phone number' name="phoneNumber" value={data.phoneNumber} onChange={(e) => handleChange(e)} />
-                    <Input placeholder='Enter your email' name="email" value={data.email} onChange={(e) => handleChange(e)} />
-                    <Input placeholder='Enter your date of birth' name="dateOfBirth" value={data.dateOfBirth} onChange={(e) => handleChange(e)} />
-                </Box>
+        <Box marginBottom={"50px"} >
+            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" >
+                <Box display="flex" flexDirection={{ base: "column", md: "row" }} justifyContent="center" alignItems="center" width="100%" >
+                    <motion.div
+                        initial={{ x: -1000 }}
+                        animate={{ x: 0 }}
+                        transition={{ duration: 1.5 }}
+                    >
+                        <Box width="100%" padding={5} id="personalDetails"  >
+                            <Text fontSize={"30px"}>Enter Personal Details </Text>
+                            <FormControl>
+                                <FormLabel>Name</FormLabel>
+                                <Input border={"0.8px solid black"} type="text" placeholder="Enter your name" name="name" value={data.name} onChange={handleChange} />
+                            </FormControl>
+                            <FormControl mt={4}>
+                                <FormLabel>Address</FormLabel>
+                                <Input border={"0.8px solid black"} type="text" placeholder="Enter your address" name="address" value={data.address} onChange={handleChange} />
+                            </FormControl>
+                            <FormControl mt={4}>
+                                <FormLabel>Phone Number</FormLabel>
+                                <Input border={"0.8px solid black"} type="number" placeholder="Enter your phone number" name="phoneNumber" value={data.phoneNumber} onChange={handleChange} />
+                            </FormControl>
+                            <FormControl mt={4}>
+                                <FormLabel>Email</FormLabel>
+                                <Input border={"0.8px solid black"} placeholder="Enter your email" name="email" value={data.email} onChange={handleChange} />
+                            </FormControl>
+                            <FormControl mt={4}>
+                                <FormLabel>Date of Birth</FormLabel>
+                                <Input border={"0.8px solid black"} type="date" placeholder="Enter your date of birth" name="dateOfBirth" value={data.dateOfBirth} onChange={handleChange} />
+                            </FormControl>
+                        </Box>
+                    </motion.div>
 
-                <Box width={"40%"} padding={5}>
-                    <Box fontSize={"30px"}>Employment Information</Box>
-                    <Input type="text" placeholder='Enter your company name' name="companyName" onChange={(e) => handleChange(e)} />
-                    <Input type="text" placeholder='Enter your employer name' name="employerName" onChange={(e) => handleChange(e)} />
-                    <Input type="text" placeholder='Enter your job title' name="jobTitle" onChange={(e) => handleChange(e)} />
-                    <Input type="number" placeholder='Enter your tenure' name="tenure" onChange={(e) => handleChange(e)} />
-                    <Input type="number" placeholder='Enter your income' name="income" onChange={(e) => handleChange(e)} />
+                    <motion.div
+                        initial={{ x: 1000 }}
+                        animate={{ x: 0 }}
+                        transition={{ duration: 1.5 }}
+                    >
+                        <Box width="100%" padding={5} id="employmentDetails" >
+                            <Text fontSize={"30px"}>Employment Information</Text>
+                            <FormControl >
+                                <FormLabel>Company Name</FormLabel>
+                                <Input border={"0.8px solid black"} type="text" placeholder="Enter your company name" name="companyName" value={data.companyName} onChange={handleChange} />
+                            </FormControl>
+                            <FormControl mt={4}>
+                                <FormLabel>Employer Name</FormLabel>
+                                <Input border={"0.8px solid black"} type="text" placeholder="Enter your employer name" name="employerName" value={data.employerName} onChange={handleChange} />
+                            </FormControl>
+                            <FormControl mt={4}>
+                                <FormLabel>Job Title</FormLabel>
+                                <Input border={"0.8px solid black"} type="text" placeholder="Enter your job title" name="jobTitle" value={data.jobTitle} onChange={handleChange} />
+                            </FormControl>
+                            <FormControl mt={4}>
+                                <FormLabel>Tenure</FormLabel>
+                                <Input border={"0.8px solid black"} type="number" placeholder="Enter your tenure max 30 years" name="tenure" value={data.tenure} onChange={handleChange} />
+                            </FormControl>
+                            <FormControl mt={4}>
+                                <FormLabel>Income</FormLabel>
+                                <Input border={"0.8px solid black"} type="number" placeholder="Enter your income" name="income" value={data.income} onChange={handleChange} />
+                            </FormControl>
+                        </Box>
+                    </motion.div>
                 </Box>
+                <Box width={{ base: "50%", md: "30%" }} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                    <FormControl mt={4}>
+                        <FormLabel>Credit Score</FormLabel>
+                        <Input border={"0.8px solid black"} type="number" placeholder="Enter your credit score" name="creditScore" value={data.creditScore} onChange={handleChange} />
+                    </FormControl>
 
-                <Box width={"30%"} padding={5}>
-                    <Box fontSize={"30px"}>Credit Score</Box>
-                    <Input type="number" placeholder='enter your credit score' name="creditScore" onChange={(e) => handleChange(e)} />
-                </Box>
-
-                <Box maxWidth="400px" mx="auto" mt="4">
-                    <FormControl>
+                    <FormControl mt={4}>
                         <FormLabel>Aadhar Card</FormLabel>
                         <Input type="file" name="aadhar" onChange={handleAadhar} />
                     </FormControl>
 
                     {aadhar && (
-                        <Box mt="4">
+                        <Box mt={4}>
                             <img src={URL.createObjectURL(aadhar)} alt="Selected file" />
                         </Box>
                     )}
-                </Box>
 
-                <Box maxWidth="400px" mx="auto" mt="4">
-                    <FormControl>
+                    <FormControl mt={4}>
                         <FormLabel>Pan Card</FormLabel>
                         <Input type="file" name="pan" onChange={handlePan} />
                     </FormControl>
 
                     {pan && (
-                        <Box mt="4">
+                        <Box mt={4}>
                             <img src={URL.createObjectURL(pan)} alt="Selected file" />
                         </Box>
                     )}
+
+                    <Link to="/ApplyLoan">
+                        <Button onClick={handleSubmit} fontSize="xl" fontWeight="bold" mt={8} bg="pink.400" color="white" _hover={{ bg: 'pink.500' }}>
+                            Check Eligibility
+                        </Button>
+                    </Link>
                 </Box>
-                        <Link to="/ApplyLoan">
-                        <Button onClick={handleSubmit} fontSize={"24px"} margin={"10px 0px 40px 0px"} backgroundColor={"pink.300"} color={"white"} _hover={{ backgroundColor: "pink.200" }} > Check Eligiblity </Button> 
-                        </Link>
-            
 
             </Box>
         </Box>
