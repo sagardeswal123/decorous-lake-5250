@@ -56,7 +56,7 @@ const NAV_ITEMS = [
 ];
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue("gray.600", "gray.200");
+  const linkColor = useColorModeValue("gray.600", "gray.600");
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
   const { isOpen, onClose } = useDisclosure();
@@ -162,12 +162,15 @@ const MobileNavItem = ({ label, children, href }) => {
 const Navbar = () => {
   const { toggleColorMode } = useColorMode();
   const SwitchIcon = useColorModeValue(MoonIcon, SunIcon);
-  const bg = useColorModeValue("white", "gray.800");
+  const bg = useColorModeValue(
+    "linear-gradient(to right, #51defc, lightblue)",
+    "linear-gradient(to right, gray.800, purple.500)"
+  );
   const mobileNav = useColorModeValue("gray.200", "gray.700");
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Box bg={bg} px={4}>
+    <Box bg={bg}   px={4}>
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <IconButton
           size={"md"}
