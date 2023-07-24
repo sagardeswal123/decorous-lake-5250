@@ -6,6 +6,7 @@ import google from "../assets/google.png";
 import walmart from "../assets/walmart_pngwing.png";
 import paypal from "../assets/paypal_pngwing.png";
 import microsoft from "../assets/microsoft.png";
+import { useNavigate } from "react-router";
 
 const iconList = [
   {
@@ -60,6 +61,7 @@ const users = [
 const HomePage = () => {
   // const MAX_USERS = 5;
   // const remainingCount = users.length - MAX_USERS;
+  const navigate=useNavigate()
   return (
     <div>
       <div style={{ width: "65%", height: "50%", margin: "5%" }}>
@@ -88,19 +90,19 @@ const HomePage = () => {
           color="black"
           mt={8}
           mr={"90%"}
+          onClick={()=>navigate("/emiCalculator")}
         >
           Get Started
         </Button>
       </div>
-      <Box display="flex" justifyContent="space-between" mr={"5%"}>
+      <Box display={{base:"block",md:"flex"}} flexDirection={{base:"column",md:"row"}} justifyContent={{base:"center",md:"space-between"}} alignItems="center" mr={"5%"}>
         <Box
-          width={{ base: "45%", lg: "35%" }}
+          width={{ base: "100%", md: "35%" }}
           height="120px"
           margin="5%"
           display="flex"
           gap="5%"
           textAlign={"left"}
-          
         >
           <Stack
             width={{ base: "280px", xl: "250px" }}
@@ -143,7 +145,6 @@ const HomePage = () => {
           gap="5%"
           width={{ base: "40%", sm: "40%", md: "45%", lg: "40%", xl: "40", "2xl": "40%" }}
           alignItems={"center"}
-          
         >
           {iconList.map((e) => (
             <Image

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link as RouteLink } from "react-router-dom";
+import { FaGlobe } from 'react-icons/fa';
 import {
   Box,
   Flex,
@@ -42,10 +43,6 @@ const NAV_ITEMS = [
   {
     label: "Apply for Loan",
     href: "/loanApplicationPage",
-  },
-  {
-    label: "Support",
-    href: "/support",
   },
   {
     label: "Login",
@@ -210,7 +207,8 @@ const Navbar = () => {
           variant={"ghost"}
         />
         <Link as={RouteLink} to={"/"}>
-          <img src={Logo} alt="Logo" style={{ height: "40px" }} />
+          <Button ><FaGlobe size={30} color="white"/> Quick Loan</Button>
+          {/* <img src={Logo} alt="Logo" style={{ height: "40px" }} /> */}
         </Link>
         <Box display={{ base: "none", md: "flex" }} alignItems={"center"}>
           <DesktopNav />
