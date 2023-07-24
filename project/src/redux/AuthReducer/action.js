@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS,REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS, } from "./actionType"
+import { LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS,REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS,USER_LOGOUT } from "./actionType"
 const url="https://server-cepv.onrender.com/SignUpData"
 export const loginUser =(params)=>(dispatch)=>{
     dispatch({type:LOGIN_REQUEST});
@@ -11,7 +11,7 @@ export const loginUser =(params)=>(dispatch)=>{
 
 export const registerUser =(params)=>(dispatch)=>{
     dispatch({type:REGISTER_REQUEST});
-   return axios.post(url, {params:params})
+   return axios.post(url, params)
       .then(function (res) {
         dispatch({type:REGISTER_SUCCESS});
       })
@@ -19,4 +19,8 @@ export const registerUser =(params)=>(dispatch)=>{
         dispatch({type:REGISTER_FAIL});
       });
    
+}
+
+export const Logout=(dispatch)=>{
+  dispatch({type:USER_LOGOUT})
 }
